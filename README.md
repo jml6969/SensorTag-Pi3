@@ -29,35 +29,41 @@ As a first example I have integrated in the python file the collection of data m
 1. IR and Ambient Temperature
 2. Luminance
 3. Humidity
-4. Barometric Pressure 
+4. Barometric Pressure
+
+Later the following were added by Jamal on August 2019 
+5. Movement sensor (this includes Gyroscope,Accelerometer,Magnetometer)
+6. Python code example to send data to Azure cloud
 
 In the website of Texas Instruments you can find more information on the details of the other sensors. The logic is the same; you should at first
 enable the sensor using the appropriate value for the appropriate register and then read the output from the appropriate register. 
 The website of sensor tag is:  
-http://www.ti.com/ww/en/wireless_connectivity/sensortag2015/?INTC=SensorTag 
-and this:
-http://processors.wiki.ti.com/index.php/SensorTag_User_Guide.
+http://www.ti.com/tool/TIDC-CC2650STK-SENSORTAG 
+and this: http://processors.wiki.ti.com/index.php/CC2650_SensorTag_User’s_Guide
 
 
 **************Instructions***************
+Have a look into this youtube short instruction: https://youtu.be/jLnmJ3L9Ahg
+
+If your Raspberry Pi 3 has no bluetooth communication stack installed then you need to install Bluez first. Take help from this link:
+    https://developer.ibm.com/recipes/tutorials/ti-sensor-tag-and-raspberry-pi/
 
 Before you start you will need to install the python pexpect libray using the following command:
-
- sudo pip install pexpect
+    sudo pip install pexpect
 
 To enable the bluetooth adaptor and find your SensorTag device address do the following -
-
     sudo hciconfig hci0 up
     sudo hcitool lescan 
 
 Press the side button and you should get a couple of lines showing the device is working. 
 You should see something like this: 
+    B0:B4:48:C8:41:81 CC2650 SensorTag
 
-	B0:B4:48:C8:41:81 CC2650 SensorTag
+Note down the MAC address of your SensorTag device. Now go to the script [sensortag.py] and insert the MAC address of your SensorTag in line 215:    
+    bluetooth_adr = "your-SensorTag-MAC address"
 
 Hit Ctrl-C to exit.  Now you're ready to go -
-
-    python sensortag.py [ADDRESS] example: python sensortag.py B0:B4:48:C8:41:81
+    python sensortag.py
     
     
 # Have fun!
