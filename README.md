@@ -26,12 +26,14 @@ TEXAS Instruments SENSOR TAG and Raspberry PI 3 Model B using Bluetooth Low Ener
 This is a simple example for the TI SensorTag using RaspberryPi 3.0 Model B which has already embedded a Bluetooth Low Engery (BLE GATT) antenna.
 
 As a first example I have integrated in the python file the collection of data measurements from:
+
 1. IR and Ambient Temperature
 2. Luminance
 3. Humidity
 4. Barometric Pressure
 
-Later the following were added by Jamal on August 2019 
+Later the following were added by Jamal on August 2019:
+ 
 5. Movement sensor (this includes Gyroscope,Accelerometer,Magnetometer)
 6. Python code example to send data to Azure cloud
 
@@ -43,26 +45,34 @@ and this: http://processors.wiki.ti.com/index.php/CC2650_SensorTag_User’s_Guid
 
 
 **************Instructions***************
-Have a look into this youtube short instruction: https://youtu.be/jLnmJ3L9Ahg
+Have a look into this youtube short instruction: 
+
+    https://youtu.be/jLnmJ3L9Ahg
 
 If your Raspberry Pi 3 has no bluetooth communication stack installed then you need to install Bluez first. Take help from this link:
+
     https://developer.ibm.com/recipes/tutorials/ti-sensor-tag-and-raspberry-pi/
 
 Before you start you will need to install the python pexpect libray using the following command:
+
     sudo pip install pexpect
 
-To enable the bluetooth adaptor and find your SensorTag device address do the following -
+To enable the bluetooth adaptor and find your SensorTag device address do the following:
+
     sudo hciconfig hci0 up
     sudo hcitool lescan 
 
 Press the side button and you should get a couple of lines showing the device is working. 
 You should see something like this: 
+
     B0:B4:48:C8:41:81 CC2650 SensorTag
 
-Note down the MAC address of your SensorTag device. Now go to the script [sensortag.py] and insert the MAC address of your SensorTag in line 215:    
+Note down the MAC address of your SensorTag device. Now go to the script [sensortag.py] and insert the MAC address of your SensorTag in line 215: 
+   
     bluetooth_adr = "your-SensorTag-MAC address"
 
-Hit Ctrl-C to exit.  Now you're ready to go -
+Hit Ctrl-C to exit.  Now you're ready to go with following command:
+
     python sensortag.py
     
     
